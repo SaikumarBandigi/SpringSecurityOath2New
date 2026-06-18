@@ -26,7 +26,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
+                .formLogin() // uses default /login page (if we want custom use .loginPage("myPage");
                 .permitAll();
     }
 
@@ -43,3 +43,22 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .roles("USER");
     }
 }
+
+/*
+That's the point where Spring decides:
+customLoginPage == false  -> generate default /login page
+
+customLoginPage == true   -> don't generate it
+_______________________________________________________________________________
+
+FormLoginConfigurer
+        ↓
+AbstractAuthenticationFilterConfigurer
+        ↓
+customLoginPage flag
+        ↓
+DefaultLoginPageConfigurer
+        ↓
+DefaultLoginPageGeneratingFilter (or not)
+
+ */

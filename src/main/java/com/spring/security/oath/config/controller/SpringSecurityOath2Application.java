@@ -4,13 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // the server
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @SpringBootApplication
 public class SpringSecurityOath2Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringSecurityOath2Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringSecurityOath2Application.class, args);
+    }
 
 }
 
