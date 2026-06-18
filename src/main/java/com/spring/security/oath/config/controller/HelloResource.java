@@ -15,6 +15,7 @@ public class HelloResource {
     public Principal user(Principal principal) {
         return principal;
     }
+
     @GetMapping
     public String hello() {
         return "Hello World";
