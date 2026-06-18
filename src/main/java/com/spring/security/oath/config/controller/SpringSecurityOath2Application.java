@@ -6,6 +6,46 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // the server
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
+// the default html page login
+import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
+
+//  username & password from login page + username & password from withUser, password check happens here
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+// equals logic really happens here
+import org.springframework.security.crypto.password.NoOpPasswordEncoder; // (doubt)
+
+//
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+
+//
+
+
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+/*
+here additionalAuthenticationChecks method is for password checking
+here retrieveUser is for username checking
+
+passwordEncoder.isPasswordValid(
+    userDetails.getPassword(),   // stored password
+    presentedPassword,           // UI password
+    salt
+)
+
+-----------------------------
+👉 credentials = ONLY password
+👉 principal = username / UserDetails
+
+Note:
+here UserDetailsService is interface there are several classes whicl impl this interafce how can i know which real rumtime class is implementing
+
+
+
+ */
+
+
 @SpringBootApplication
 public class SpringSecurityOath2Application {
 
@@ -75,4 +115,15 @@ userInfoUri:
 
 Finally you reach:
 http://localhost:8082/ui/secure
+ */
+
+/// ////////////////////////////////////////////////////////////////////////
+/*
+
+| Case                                | What happens                      |
+| ----------------------------------- | --------------------------------- |
+| No `.loginPage()` configured        | Spring generates default login UI |
+| `.loginPage("/myLogin")` configured | YOU must provide that page        |
+| `.loginPage(...)` + controller/view | You serve your own HTML           |
+
  */
